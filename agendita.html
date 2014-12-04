@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+   <link href="estilos.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <script src="agenda.js"></script>
+</head>
+<body>
+    <div id="agenda">
+        <div id="cabecera">
+            <div id="registro">
+                <fieldset>
+                    <legend>Registro</legend>
+                     <span>
+                        <a href="" title="Primer registro" onclick="primerRegistro()"><img src="img/primero.png"></a>
+                    </span>
+                    <span>
+                        <a href="" title="Anterior registro" onclick="anteriorRegistro()"><img src="img/left.png"></a>
+                    </span>
+                    <label>23 de 45</label>
+                     <span>
+                        <a href="" title="Siguiente registro" onclick="siguienteRegistro()"><img src="img/right.png"></a>
+                    </span>
+                    <span>
+                        <a href="" title="Ultimo registro" onclick="ultimoRegistro()"><img src="img/ultimo.png"></a>
+                    </span>
+                </fieldset>
+            </div>
+            <div id="mostrar">
+                <fieldset>
+                    <legend>Mostrar</legend>
+                    <label for="entrada">Nº Reg.</label>
+                    <input type="number" min="0" max="1000" name="entrada" id="entrada" >
+                     <span>
+                        <a href="" title="Buscar" onclick="buscarRegistro()"><img src="img/buscar.png"></a>
+                    </span>
+                </fieldset>
+            </div>
+        </div>
+        <div id="edicion">
+            <fieldset>
+                <legend>Edicion</legend>
+                <div id="etiquetas">
+                    <label for="nombre">Nombre</label>
+                    <label for="apellidos">Apellidos</label>
+                    <label for="telefono">Telefono</label>
+                    <label for="fecha">Fecha Nac.</label>
+                </div>
+                <div id="editores">
+                    <input type="text" name="nombre" id="nombre" placeholder="Introduzca Nombre">
+                    <input type="text" name="apellidos" id="apellidos" placeholder="Introduzca Apellidos">
+                    <input type="tel" name="telefono" id="telefono" placeholder="Introduzca Telefono">
+                    <input type="date" name="fecha" id="fecha">
+                </div>
+                <div id="botones-editar">
+                    <span>
+                        <a href="" title="Nuevo registro" onclick="nuevo()"><img src="img/nuevo.png"></a>
+                    </span>
+                    <br>
+                     <span>
+                        <a href="" title="Borrar registro" onclick="borrar()"><img src="img/borrar.png"></a>
+                    </span>
+                    <br>
+                    <span>
+                        <a href="" title="Guardar cambios" onclick="guardarCambios()"><img src="img/guardar.png"></a>
+                    </span>
+                </div>
+
+            </fieldset>
+        </div>
+        <div id="resumen">
+            <fieldset>
+                <legend>Resumen</legend>
+                <textarea name="resumen" readonly="readonly"></textarea>
+            </fieldset>
+        </div>
+    </div>
+</body>
+</html>

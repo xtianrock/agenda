@@ -1,0 +1,128 @@
+*
+{
+    font: normal 14px/28px Montserrat;
+    color: #ffffff;
+}
+#agenda
+{
+    background: #0B486B;
+    border-radius: 6px;
+    box-shadow: 0 4px #009de4, 0px 10px 15px rgba(0, 0, 0, 0.2);
+    width: 570px;
+    height: auto;
+    margin: 40px auto;
+    padding: 20px 10px 20px 10px;
+
+}
+#cabecera
+{
+    width: 100%;
+    height: auto;
+}
+#registro
+{
+    float: left;
+    width: 60%;
+    height: 100%;
+    padding: 10px 10px 10px 10px;
+    box-sizing: border-box;
+}
+#mostrar
+{
+    float:right;
+    width: 40%;
+    height: 100%;
+    padding: 10px 10px 10px 10px;
+    box-sizing: border-box;
+}
+#edicion
+{
+    clear: both;
+    width: 100%;
+    height: auto;
+    padding: 10px 10px 10px 10px;
+    box-sizing: border-box;
+}
+#etiquetas
+{
+    float: left;
+    width: 20%;
+}
+#editores
+{
+    float: left;
+    width: 50%;
+}
+#botones-editar
+{  float: right;
+    width: 30%;
+
+}
+#botones-editar span
+{
+    margin: 10px auto;
+    width: 50px;
+}
+#resumen
+{
+    width: 100%;
+    height: auto;
+    padding: 10px 10px 10px 10px;
+    box-sizing: border-box;
+}
+input
+{
+    color: #0B486B;
+}
+fieldset
+{
+    height: 100%;
+    box-sizing: border-box;
+}
+textarea
+{
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 100px;
+}
+img
+{
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+label
+{
+    float: inherit;
+    margin: 2px 0 6px 0;
+
+}
+span
+{
+
+    position: relative;
+    top: 0;
+    overflow: hidden;
+    cursor: pointer;
+    background: #3B8686;
+    border-radius: 6px;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
+    margin: 0 12px 12px 0;
+    user-select: none;
+    color: #ffffff;
+    line-height: 36px;
+    text-align: center;
+    transition: all 0.2s ease;/* Animacion para el cambio entre normal y active y para el hover*/
+    padding: 6px 4px 6px 4px;
+}
+ span:hover
+{
+    background: #50c1d3;
+    box-shadow: 0px 4px #36828e;
+    color: white;
+}
+span:active
+{
+    box-shadow: 0px 0px #6b54d3;
+    top: 4px;
+}
