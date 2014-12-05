@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -13,18 +13,18 @@
             <div id="registro">
                 <fieldset>
                     <legend>Registro</legend>
-                     <span>
-                        <a href="" title="Primer registro" onclick="primerRegistro()"><img src="img/primero.png"></a>
+                     <span id="primer" title="Primer registro" onclick="primerRegistro()">
+                      <img src="img/primero.png">
                     </span>
-                    <span>
-                        <a href="" title="Anterior registro" onclick="anteriorRegistro()"><img src="img/left.png"></a>
+                    <span id="anterior" title="Anterior registro" onclick="anteriorRegistro()">
+                       <img src="img/left.png">
                     </span>
-                    <label>23 de 45</label>
-                     <span>
-                        <a href="" title="Siguiente registro" onclick="siguienteRegistro()"><img src="img/right.png"></a>
+                    <label id="numeroRegistro">23 de 45</label>
+                     <span id="siguiente" title="Siguiente registro" onclick="siguienteRegistro()">
+                      <img src="img/right.png">
                     </span>
-                    <span>
-                        <a href="" title="Ultimo registro" onclick="ultimoRegistro()"><img src="img/ultimo.png"></a>
+                    <span id="ultimo" title="Ultimo registro" onclick="ultimoRegistro()">
+                       <img src="img/ultimo.png">
                     </span>
                 </fieldset>
             </div>
@@ -33,8 +33,8 @@
                     <legend>Mostrar</legend>
                     <label for="entrada">Nº Reg.</label>
                     <input type="number" min="0" max="1000" name="entrada" id="entrada" >
-                     <span>
-                        <a href="" title="Buscar" onclick="buscarRegistro()"><img src="img/buscar.png"></a>
+                     <span  title="Buscar" onclick="buscarRegistro()">
+                        <img src="img/buscar.png">
                     </span>
                 </fieldset>
             </div>
@@ -49,22 +49,22 @@
                     <label for="fecha">Fecha Nac.</label>
                 </div>
                 <div id="editores">
-                    <input type="text" name="nombre" id="nombre" placeholder="Introduzca Nombre">
-                    <input type="text" name="apellidos" id="apellidos" placeholder="Introduzca Apellidos">
-                    <input type="tel" name="telefono" id="telefono" placeholder="Introduzca Telefono">
-                    <input type="date" name="fecha" id="fecha">
+                    <input type="text" name="nombre" id="nombre" placeholder="Introduzca Nombre" disabled="disabled">
+                    <input type="text" name="apellidos" id="apellidos" placeholder="Introduzca Apellidos" disabled="disabled">
+                    <input type="tel" name="telefono" id="telefono" placeholder="Introduzca Telefono" disabled="disabled">
+                    <input type="date" name="fecha" id="fecha" disabled="disabled">
                 </div>
                 <div id="botones-editar">
-                    <span>
-                        <a href="" title="Nuevo registro" onclick="nuevo()"><img src="img/nuevo.png"></a>
+                    <span id="nuevo" title="Nuevo registro" onclick="nuevo()">
+                    <img src="img/nuevo.png">
                     </span>
                     <br>
-                     <span>
-                        <a href="" title="Borrar registro" onclick="borrar()"><img src="img/borrar.png"></a>
+                     <span id="borrar" title="Borrar registro" onclick="borrar()">
+                      <img src="img/borrar.png">
                     </span>
                     <br>
-                    <span>
-                        <a href="" title="Guardar cambios" onclick="guardarCambios()"><img src="img/guardar.png"></a>
+                    <span id="guardar" title="Guardar" onclick="guardar()">
+                        <img src="img/guardar.png">
                     </span>
                 </div>
 
