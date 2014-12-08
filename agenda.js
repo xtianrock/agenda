@@ -5,6 +5,16 @@ var agenda=[];
 var posicion=0;
 var izquierda=false;
 var derecha=false;
+var guardar=false;
+var borrar=false;
+var editar=false;
+var buscarInd=false;
+var accionBorrar="borrar";
+var accionGuardar="guardar";
+var colorBotonDesactivado="#254d4d";
+var colorBotonActivado="#3B8686";
+var colorInputActivado="white";
+var colorInputDesactivado="#818181";
 
 
 function onLoad()
@@ -12,8 +22,30 @@ function onLoad()
     desplazamientoIzquierda(false);
     desplazamientoDerecha(false);
     cuadrosTexto(false);
-    alert("onload");
+    activarBotones(false,["borrar","guardar","editar"])
 }
+function activarBotones(activo,botones)
+{
+    if(activo)
+    {
+        for(i=0;i<botones.length;i++)
+        {
+            element(botones[i]).style.background=colorBotonActivado;
+           window [botones[i]]=true;
+        }
+    }
+    else
+    {
+        for(i=0;i<botones.length;i++)
+        {
+            element(botones[i]).style.background=colorBotonDesactivado;
+            window [botones[i]]=false;
+        }
+    }
+
+}
+
+
 function cuadrosTexto(bool)
 {
     if(bool)
@@ -22,10 +54,10 @@ function cuadrosTexto(bool)
         element("apellidos").disabled=false;
         element("telefono").disabled=false;
         element("fecha").disabled=false;
-        element("nombre").style.background="white";
-        element("apellidos").style.background="white";
-        element("telefono").style.background="white";
-        element("fecha").style.background="white";
+        element("nombre").style.background=colorInputActivado;
+        element("apellidos").style.background=colorInputActivado;
+        element("telefono").style.background=colorInputActivado;
+        element("fecha").style.background=colorInputActivado;
     }
     else
     {
@@ -33,10 +65,10 @@ function cuadrosTexto(bool)
         element("apellidos").disabled=true;
         element("telefono").disabled=true;
         element("fecha").disabled=true;
-        element("nombre").style.background="#818181";
-        element("apellidos").style.background="#818181";
-        element("telefono").style.background="#818181";
-        element("fecha").style.background="#818181";
+        element("nombre").style.background=colorInputDesactivado;
+        element("apellidos").style.background=colorInputDesactivado;
+        element("telefono").style.background=colorInputDesactivado;
+        element("fecha").style.background=colorInputDesactivado;
     }
 }
 function desplazamientoIzquierda(bool)
@@ -44,13 +76,13 @@ function desplazamientoIzquierda(bool)
     izquierda=bool;
     if(!bool)
     {
-        element("primer").style.background="#254d4d";
-        element("anterior").style.background="#254d4d";
+        element("primer").style.background=colorBotonDesactivado
+        element("anterior").style.background=colorBotonDesactivado;
     }
     else
     {
-        element("primer").style.background="#3B8686";
-        element("anterior").style.background="#3B8686";
+        element("primer").style.background=colorBotonActivado;
+        element("anterior").style.background=colorBotonActivado
     }
 }
 
@@ -59,16 +91,31 @@ function desplazamientoDerecha(bool)
     derecha=bool;
     if(!bool)
     {
-        element("siguiente").style.background="#254d4d";
-        element("ultimo").style.background="#254d4d";
+        element("siguiente").style.background=colorBotonDesactivado;
+        element("ultimo").style.background=colorBotonDesactivado;
     }
     else
     {
-        element("siguiente").style.background="#3B8686";
-        element("ultimo").style.background="#3B8686";
+        element("siguiente").style.background=colorBotonActivado;
+        element("ultimo").style.background=colorBotonActivado;
     }
 }
+function cambiarAccionBorrar(accion)
+{
+    if(accion=="borrar")
+    {
+        element("borrar-img").src = "img/borrar.png";
+        element("borrar").title = "Eliminar contato";
+        accionBorrar = "borrar";
+    }
+    else
+    {
+        element("borrar-img").src = "img/cancelar.png";
+        element("borrar").title = "Cancelar";
+        accionBorrar = "cancelar";
+    }
 
+}
 function element(id)
 {
     return document.getElementById(id);
@@ -103,28 +150,83 @@ function limpiarCampos()
 
 
 
-function nuevo()
+function nuevoContacto()
 {
     cuadrosTexto(true);
     limpiarCampos();
     element("numeroRegistro").innerHTML=agenda.length+1+" de "+(agenda.length+1);
+    activarBotones(true,["borrar","guardar"]);
+    cambiarAccionBorrar("cancelar");
+}
 
+function editarContacto()
+{
+    if (editar)
+    {
+        accionGuardar="editar";
+        activarBotones(false,["nuevo"]);
+        activarBotones(true,["guardar"]);
+        cambiarAccionBorrar("cancelar");
+        cuadrosTexto(true);
+    }
+}
+
+function guardarContacto()
+{
+    if(guardar)
+    {
+        persona=new Contacto();
+        if(accionGuardar=="guardar")
+        {
+            agenda.push(persona);
+            posicion+=1;
+        }
+        else
+        {
+            agenda[posicion-1]=persona;
+            accionGuardar="guardar";
+        }
+        registrar();
+        mostrar(posicion-1);
+        mostrarResumen();
+        activarBotones(true,["borrar","editar","nuevo"]);
+        activarBotones(false,["guardar"]);
+        cuadrosTexto(false);
+        cambiarAccionBorrar("borrar")
+    }
+}
+function borrarContacto()
+{
+    if(borrar)
+    {
+        if (accionBorrar=="borrar")
+        {
+            agenda.splice(posicion-1,1);
+            posicion=agenda.length;
+            registrar();
+            //activarBotones(true,["nuevo"]);
+        }
+        else
+        {
+
+            cuadrosTexto(false);
+            cambiarAccionBorrar("borrar");
+            posicion=agenda.length;
+            limpiarCampos();
+            activarBotones(false,["borrar"]);
+            activarBotones(true,["nuevo"]);
+            registrar();
+        }
+    }
 
 }
-function guardar()
+
+function buscarIndice()
 {
-    persona=new Contacto();
-    agenda.push(persona);
-    posicion+=1;
-    registrar();
-    mostrar(posicion-1);
-    mostrarResumen();
-}
-function borrar()
-{
-    agenda.splice(posicion-1,1);
-    posicion=agenda.length;
-    registrar();
+    if (buscarInd)
+    {
+        alert("buscar");
+    }
 }
 
 function registrar()

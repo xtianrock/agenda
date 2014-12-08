@@ -33,7 +33,7 @@
                     <legend>Mostrar</legend>
                     <label for="entrada">Nº Reg.</label>
                     <input type="number" min="0" max="1000" name="entrada" id="entrada" >
-                     <span  title="Buscar" onclick="buscarRegistro()">
+                     <span  id="buscar" title="Buscar" onclick="buscarRegistro()">
                         <img src="img/buscar.png">
                     </span>
                 </fieldset>
@@ -55,17 +55,23 @@
                     <input type="date" name="fecha" id="fecha" disabled="disabled">
                 </div>
                 <div id="botones-editar">
-                    <span id="nuevo" title="Nuevo registro" onclick="nuevo()">
+                    <span id="nuevo" title="Nuevo registro" onclick="nuevoContacto()">
                     <img src="img/nuevo.png">
                     </span>
                     <br>
-                     <span id="borrar" title="Borrar registro" onclick="borrar()">
-                      <img src="img/borrar.png">
+                     <span id="borrar" title="Borrar registro" onclick="borrarContacto()">
+                      <img id="borrar-img" src="img/borrar.png">
                     </span>
                     <br>
-                    <span id="guardar" title="Guardar" onclick="guardar()">
+                    <span id="editar" title="Editar" onclick="editarContacto()">
+                        <img src="img/editar.png">
+                    </span>
+                    <br>
+                    <span id="guardar" title="Guardar" onclick="guardarContacto()">
                         <img src="img/guardar.png">
                     </span>
+
+
                 </div>
 
             </fieldset>
