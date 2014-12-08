@@ -7,23 +7,23 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <script src="agenda.js"></script>
 </head>
-<body>
+<body onload="onLoad();">
     <div id="agenda">
         <div id="cabecera">
             <div id="registro">
                 <fieldset>
                     <legend>Registro</legend>
-                     <span id="primer" title="Primer registro" onclick="primerRegistro()">
+                     <span id="primer" title="Primer registro" onclick="primerRegistro();">
                       <img src="img/primero.png">
                     </span>
-                    <span id="anterior" title="Anterior registro" onclick="anteriorRegistro()">
+                    <span id="anterior" title="Anterior registro" onclick="anteriorRegistro();">
                        <img src="img/left.png">
                     </span>
-                    <label id="numeroRegistro">23 de 45</label>
-                     <span id="siguiente" title="Siguiente registro" onclick="siguienteRegistro()">
+                    <label id="numeroRegistro">0 de 0</label>
+                     <span id="siguiente" title="Siguiente registro" onclick="siguienteRegistro();">
                       <img src="img/right.png">
                     </span>
-                    <span id="ultimo" title="Ultimo registro" onclick="ultimoRegistro()">
+                    <span id="ultimo" title="Ultimo registro" onclick="ultimoRegistro();">
                        <img src="img/ultimo.png">
                     </span>
                 </fieldset>
@@ -72,8 +72,8 @@
         </div>
         <div id="resumen">
             <fieldset>
-                <legend>Resumen</legend>
-                <textarea name="resumen" readonly="readonly"></textarea>
+                <legend><label for="textarea">Resumen</label></legend>
+                <textarea id="textarea">Resumen agenda:</textarea>
             </fieldset>
         </div>
     </div>

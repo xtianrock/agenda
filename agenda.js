@@ -3,12 +3,76 @@
  */
 var agenda=[];
 var posicion=0;
+var izquierda=false;
+var derecha=false;
+
+
+function onLoad()
+{
+    desplazamientoIzquierda(false);
+    desplazamientoDerecha(false);
+    cuadrosTexto(false);
+    alert("onload");
+}
+function cuadrosTexto(bool)
+{
+    if(bool)
+    {
+        element("nombre").disabled=false;
+        element("apellidos").disabled=false;
+        element("telefono").disabled=false;
+        element("fecha").disabled=false;
+        element("nombre").style.background="white";
+        element("apellidos").style.background="white";
+        element("telefono").style.background="white";
+        element("fecha").style.background="white";
+    }
+    else
+    {
+        element("nombre").disabled=true;
+        element("apellidos").disabled=true;
+        element("telefono").disabled=true;
+        element("fecha").disabled=true;
+        element("nombre").style.background="#818181";
+        element("apellidos").style.background="#818181";
+        element("telefono").style.background="#818181";
+        element("fecha").style.background="#818181";
+    }
+}
+function desplazamientoIzquierda(bool)
+{
+    izquierda=bool;
+    if(!bool)
+    {
+        element("primer").style.background="#254d4d";
+        element("anterior").style.background="#254d4d";
+    }
+    else
+    {
+        element("primer").style.background="#3B8686";
+        element("anterior").style.background="#3B8686";
+    }
+}
+
+function desplazamientoDerecha(bool)
+{
+    derecha=bool;
+    if(!bool)
+    {
+        element("siguiente").style.background="#254d4d";
+        element("ultimo").style.background="#254d4d";
+    }
+    else
+    {
+        element("siguiente").style.background="#3B8686";
+        element("ultimo").style.background="#3B8686";
+    }
+}
 
 function element(id)
 {
     return document.getElementById(id);
 }
-
 
 function Contacto()
 {
@@ -30,34 +94,19 @@ function fechaActual()
 }
 function limpiarCampos()
 {
-    element("nombre").value='';
+    element("nombre").value="";
     element("apellidos").value="";
     element("telefono").value="";
     element("fecha").value="";
+
 }
 
-function activarBotones(bool)
-{
-    element("nombre").onclick=bool;
-    element("apellidos").onclick=bool;
-    element("telefono").onclick=bool;
-    element("fecha").onclick=bool;
-    element("primer").onclick=bool;
-    element("anterior").onclick=bool;
-    element("siguiente").onclick=bool;
-    element("ultimo").onclick=bool;
-    element("borrar").onclick=bool;
-    element("nuevo").onclick=bool;
-}
+
 
 function nuevo()
 {
-    element("nombre").disabled=false;
-    element("apellidos").disabled=false;
-    element("telefono").disabled=false;
-    element("fecha").disabled=false;
+    cuadrosTexto(true);
     limpiarCampos();
-    activarBotones(false);
     element("numeroRegistro").innerHTML=agenda.length+1+" de "+(agenda.length+1);
 
 
@@ -68,15 +117,47 @@ function guardar()
     agenda.push(persona);
     posicion+=1;
     registrar();
-    activarBotones(true);
     mostrar(posicion-1);
-
-
+    mostrarResumen();
+}
+function borrar()
+{
+    agenda.splice(posicion-1,1);
+    posicion=agenda.length;
+    registrar();
 }
 
 function registrar()
 {
     element("numeroRegistro").innerHTML=posicion+" de "+agenda.length;
+    mostrar(posicion-1);
+    if(posicion>1)
+    {
+        desplazamientoIzquierda(true);
+    }
+    else
+    {
+        desplazamientoIzquierda(false);
+    }
+    if(posicion<agenda.length)
+    {
+        desplazamientoDerecha(true);
+    }
+    else
+    {
+       desplazamientoDerecha(false);
+    }
+
+
+}
+function mostrarResumen()
+{
+    element("textarea").value="Resumen agenda: ";
+   for(i=0;i<agenda.length;i++)
+   {
+       element("textarea").value+="\n"+(i+1)+"   "+agenda[i].nombre+" "+agenda[i].apellidos+"  "+agenda[i].telefono+"  "+agenda[i].fecha;
+   }
+    element("textarea").value+="\n\n Total de entradas almacenadas: "+agenda.length;
 }
 
 function mostrar(pos)
@@ -89,23 +170,33 @@ function mostrar(pos)
 
 function primerRegistro()
 {
-    posicion=1;
-    registrar();
+    if(izquierda)
+    {
+        posicion=1;
+        registrar();
+    }
 }
 function anteriorRegistro()
 {
-    if(posicion>1)
-    posicion-=1;
-    registrar();
+    if(izquierda)
+    {
+        posicion-=1;
+        registrar();
+    }
 }
 function siguienteRegistro()
 {
-    if(posicion<agenda.length)
-    posicion+=1;
-    registrar();
+    if(derecha)
+    {
+        posicion+=1;
+        registrar();
+    }
 }
 function ultimoRegistro()
 {
-    posicion=agenda.length;
-    registrar();
+    if(derecha)
+    {
+        posicion=agenda.length;
+        registrar();
+    }
 }
