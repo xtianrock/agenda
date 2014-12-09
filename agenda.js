@@ -214,7 +214,7 @@ function buscarContacto()
         fecha=new RegExp(element("fecha").value);
         if(nombre=="/(?:)/"&&apellidos=="/(?:)/"&&telefono=="/(?:)/"&&fecha=="/(?:)/")
         {
-            alert("Introduzca al menos un camo por el que buscar.")
+            alert("Introduzca al menos un campo por el que buscar.")
         }
         else
         {
@@ -290,7 +290,7 @@ function editarContacto()
 
 function guardarContacto()
 {
-    if(guardar)
+    if(guardar&&!camposVacios())
     {
         persona=new Contacto();
         if(accionGuardar=="guardar")
@@ -336,12 +336,12 @@ function borrarContacto()
 
 }
 
-function buscarIndice()
+
+
+function camposVacios()
 {
-    if (buscarInd)
-    {
-        alert("buscar");
-    }
+    return (element("nombre").value==""||element("apellidos").value==""||element("telefono").value==""||element("fecha").value=="");
+
 }
 
 function registrar()
