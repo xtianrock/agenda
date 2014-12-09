@@ -9,6 +9,7 @@ var guardar=false;
 var borrar=false;
 var editar=false;
 var buscarInd=false;
+var buscando =false;
 var accionBorrar="borrar";
 var accionGuardar="guardar";
 var colorBotonDesactivado="#254d4d";
@@ -22,8 +23,48 @@ function onLoad()
     desplazamientoIzquierda(false);
     desplazamientoDerecha(false);
     cuadrosTexto(false);
-    activarBotones(false,["borrar","guardar","editar"])
+    activarBotones(false,["borrar","guardar","editar"]);
+    contactosPredefinidos();
 }
+
+function contactosPredefinidos()
+{
+    var cont = new Contacto();
+    cont.apellidos = "Vizcaino Alvarez";
+    cont.nombre = "Cristian";
+    cont.telefono = "654685107";
+    cont.fecha = "1989-04-24";
+    agenda.push(cont);
+
+    var cont = new Contacto();
+    cont.apellidos = "Franco Conceglieri";
+    cont.nombre = "Maria";
+    cont.telefono = "626047737";
+    cont.fecha = "1991-03-07";
+    agenda.push(cont);
+
+    var cont = new Contacto();
+    cont.apellidos = "Alvarez Alfonseca";
+    cont.nombre = "Juani";
+    cont.telefono = "644363846";
+    cont.fecha = "1967-03-14";
+    agenda.push(cont);
+
+    var cont = new Contacto();
+    cont.apellidos = "Vizcaino Ramirez";
+    cont.nombre = "Francisco";
+    cont.telefono = "654685107";
+    cont.fecha = "1964-04-03";
+    agenda.push(cont);
+
+    posicion=agenda.length;
+    registrar();
+    activarBotones(true,["borrar","editar","nuevo"]);
+    activarBotones(false,["guardar"]);
+    cuadrosTexto(false);
+    cambiarAccionBorrar("borrar")
+}
+
 function activarBotones(activo,botones)
 {
     if(activo)
@@ -76,13 +117,13 @@ function desplazamientoIzquierda(bool)
     izquierda=bool;
     if(!bool)
     {
-        element("primer").style.background=colorBotonDesactivado
+        element("primer").style.background=colorBotonDesactivado;
         element("anterior").style.background=colorBotonDesactivado;
     }
     else
     {
         element("primer").style.background=colorBotonActivado;
-        element("anterior").style.background=colorBotonActivado
+        element("anterior").style.background=colorBotonActivado;
     }
 }
 
@@ -126,7 +167,7 @@ function Contacto()
     this.nombre=element("nombre").value;
     this.apellidos=element("apellidos").value;
     this.telefono=element("telefono").value;
-    this.fecha=fechaActual();
+    this.fecha=element("fecha").value;
 }
 
 function fechaActual()
@@ -148,7 +189,78 @@ function limpiarCampos()
 
 }
 
+function buscarRegistro()
+{
+    if (element("entrada").value>0&&element("entrada").value<=agenda.length)
+    {
+        posicion=element("entrada").value;
+        registrar();
+        mostrar(posicion-1);
+    }
+    else
+    {
+        alert("El registro "+element("entrada").value+" no existe");
+    }
+}
 
+function buscarContacto()
+{
+    if(buscando)
+    {
+        resultados=[];
+        nombre=new RegExp(element("nombre").value);
+        apellidos=new RegExp(element("apellidos").value);
+        telefono=new RegExp(element("telefono").value);
+        fecha=new RegExp(element("fecha").value);
+        if(nombre=="/(?:)/"&&apellidos=="/(?:)/"&&telefono=="/(?:)/"&&fecha=="/(?:)/")
+        {
+            alert("Introduzca al menos un camo por el que buscar.")
+        }
+        else
+        {
+            for (i=0;i<agenda.length;i++)
+            {
+                if(nombre.test(agenda[i].nombre)&&
+                    apellidos.test(agenda[i].apellidos)&&
+                    telefono.test(agenda[i].telefono)&&
+                    fecha.test(agenda[i].fecha))
+                {
+                    resultados.push(agenda[i]);
+                }
+            }
+            if(resultados.length>0)
+            {
+                alert("Se han encontrado "+resultados.length+" coincidencias, se mostrarán en 'resumen'.");
+
+            }
+            else
+            {
+                alert("No se han encontrado coincidencias.");
+            }
+            element("textarea").value="Resultados de la busqueda: ";
+            for(i=0;i<resultados.length;i++)
+            {
+                element("textarea").value+="\n"+(i+1)+"   "+resultados[i].nombre+" "+resultados[i].apellidos+"  "+resultados[i].telefono+"  "+resultados[i].fecha;
+            }
+            element("textarea").value+="\n\n Total de coincidencias: "+resultados.length;
+            element("legend").innerHTML="Edición";
+        }
+
+    }
+    else
+    {
+        alert("Introduzca los valores por los que desea buscar y vuelva a pulsar en buscar.");
+        limpiarCampos();
+        cuadrosTexto(true);
+        buscando=true;
+        activarBotones(false,["editar","nuevo","buscar"]);
+        cambiarAccionBorrar("cancelar");
+        desplazamientoDerecha(false);
+        desplazamientoIzquierda(false);
+        element("legend").innerHTML="Introduzca los parametros de busqueda.";
+    }
+
+}
 
 function nuevoContacto()
 {
@@ -156,7 +268,10 @@ function nuevoContacto()
     limpiarCampos();
     element("numeroRegistro").innerHTML=agenda.length+1+" de "+(agenda.length+1);
     activarBotones(true,["borrar","guardar"]);
+    activarBotones(false,["editar","buscar-contacto","buscar"]);
     cambiarAccionBorrar("cancelar");
+    desplazamientoDerecha(false);
+    desplazamientoIzquierda(false);
 }
 
 function editarContacto()
@@ -168,6 +283,8 @@ function editarContacto()
         activarBotones(true,["guardar"]);
         cambiarAccionBorrar("cancelar");
         cuadrosTexto(true);
+        desplazamientoDerecha(false);
+        desplazamientoIzquierda(false);
     }
 }
 
@@ -187,8 +304,6 @@ function guardarContacto()
             accionGuardar="guardar";
         }
         registrar();
-        mostrar(posicion-1);
-        mostrarResumen();
         activarBotones(true,["borrar","editar","nuevo"]);
         activarBotones(false,["guardar"]);
         cuadrosTexto(false);
@@ -204,13 +319,13 @@ function borrarContacto()
             agenda.splice(posicion-1,1);
             posicion=agenda.length;
             registrar();
-            //activarBotones(true,["nuevo"]);
         }
         else
         {
 
             cuadrosTexto(false);
             cambiarAccionBorrar("borrar");
+            buscando=false;
             posicion=agenda.length;
             limpiarCampos();
             activarBotones(false,["borrar"]);
@@ -231,8 +346,8 @@ function buscarIndice()
 
 function registrar()
 {
+    mostrarResumen();
     element("numeroRegistro").innerHTML=posicion+" de "+agenda.length;
-    mostrar(posicion-1);
     if(posicion>1)
     {
         desplazamientoIzquierda(true);
@@ -248,6 +363,16 @@ function registrar()
     else
     {
        desplazamientoDerecha(false);
+    }
+    if(agenda.length==0)
+    {
+        activarBotones(false,["editar","borrar","guardar","buscar-contacto","buscar"]);
+        limpiarCampos();
+    }
+    else
+    {
+        activarBotones(true,["editar","borrar","buscar-contacto","buscar"]);
+        mostrar(posicion-1);
     }
 
 

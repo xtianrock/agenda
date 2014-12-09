@@ -41,7 +41,7 @@
         </div>
         <div id="edicion">
             <fieldset>
-                <legend>Edicion</legend>
+                <legend id="legend">Edicion</legend>
                 <div id="etiquetas">
                     <label for="nombre">Nombre</label>
                     <label for="apellidos">Apellidos</label>
@@ -58,7 +58,7 @@
                     <span id="nuevo" title="Nuevo registro" onclick="nuevoContacto()">
                     <img src="img/nuevo.png">
                     </span>
-                    <br>
+
                      <span id="borrar" title="Borrar registro" onclick="borrarContacto()">
                       <img id="borrar-img" src="img/borrar.png">
                     </span>
@@ -66,10 +66,16 @@
                     <span id="editar" title="Editar" onclick="editarContacto()">
                         <img src="img/editar.png">
                     </span>
+
+                    <span id="buscar-contacto" title="Buscar" onclick="buscarContacto()">
+                        <img src="img/buscar.png">
+                    </span>
                     <br>
                     <span id="guardar" title="Guardar" onclick="guardarContacto()">
                         <img src="img/guardar.png">
                     </span>
+
+
 
 
                 </div>

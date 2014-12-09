@@ -59,12 +59,13 @@
 }
 #botones-editar
 {  float: right;
-    width:15%;
+    width:25%;
+
 
 }
 #botones-editar span
 {
-    margin: 10px auto;
+    margin-top: 10px;
     width: 50px;
 }
 #resumen
