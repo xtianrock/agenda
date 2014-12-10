@@ -3,9 +3,9 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-   <link href="estilos.css" rel="stylesheet" type="text/css">
+   <link href="../css/agenda.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-    <script src="agenda.js"></script>
+    <script src="../js/agenda.js"></script>
 </head>
 <body onload="onLoad();">
     <div id="agenda">
@@ -14,17 +14,17 @@
                 <fieldset>
                     <legend>Registro</legend>
                      <span id="primer" title="Primer registro" onclick="primerRegistro();">
-                      <img src="img/primero.png">
+                      <img src="../img/primero.png">
                     </span>
                     <span id="anterior" title="Anterior registro" onclick="anteriorRegistro();">
-                       <img src="img/left.png">
+                       <img src="../img/left.png">
                     </span>
                     <label id="numeroRegistro">0 de 0</label>
                      <span id="siguiente" title="Siguiente registro" onclick="siguienteRegistro();">
-                      <img src="img/right.png">
+                      <img src="../img/right.png">
                     </span>
                     <span id="ultimo" title="Ultimo registro" onclick="ultimoRegistro();">
-                       <img src="img/ultimo.png">
+                       <img src="../img/ultimo.png">
                     </span>
                 </fieldset>
             </div>
@@ -34,7 +34,7 @@
                     <label for="entrada">Nº Reg.</label>
                     <input type="number" min="0" max="1000" name="entrada" id="entrada" >
                      <span  id="buscar" title="Buscar" onclick="buscarRegistro()">
-                        <img src="img/buscar.png">
+                        <img src="../img/buscar.png">
                     </span>
                 </fieldset>
             </div>
@@ -56,23 +56,23 @@
                 </div>
                 <div id="botones-editar">
                     <span id="nuevo" title="Nuevo registro" onclick="nuevoContacto()">
-                    <img src="img/nuevo.png">
+                    <img src="../img/nuevo.png">
                     </span>
 
                      <span id="borrar" title="Borrar registro" onclick="borrarContacto()">
-                      <img id="borrar-img" src="img/borrar.png">
+                      <img id="borrar-img" src="../img/borrar.png">
                     </span>
                     <br>
                     <span id="editar" title="Editar" onclick="editarContacto()">
-                        <img src="img/editar.png">
+                        <img src="../img/editar.png">
                     </span>
 
                     <span id="buscar-contacto" title="Buscar" onclick="buscarContacto()">
-                        <img src="img/buscar.png">
+                        <img src="../img/buscar.png">
                     </span>
                     <br>
                     <span id="guardar" title="Guardar" onclick="guardarContacto()">
-                        <img src="img/guardar.png">
+                        <img src="../img/guardar.png">
                     </span>
 
 

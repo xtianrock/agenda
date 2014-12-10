@@ -3,8 +3,8 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="calculadora.css"/>
-    <script src="calculadora.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../css/calculadora.css"/>
+    <script src="../js/calculadora.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="calculadora">
@@ -28,7 +28,7 @@
                <span class="botonInutil">
                 M+
             </span>
-           <span class="botonEspecial">
+           <span class="botonEspecial" onclick="retroceder();">
                 &#8592;
             </span>
                <span class="botonEspecial" onclick="borrar()">
@@ -37,7 +37,7 @@
                <span class="botonEspecial" onclick="borrarTodo()">
                 C
             </span>
-               <span class="botonEspecial">
+               <span class="botonEspecial" onclick="cambiaSigno()">
                 &#177;
             </span>
             <span class="botonNumerico" onclick="escribeNumero(this.innerHTML)">7</span>
@@ -53,20 +53,20 @@
             <span class="botonNumerico" onclick="escribeNumero(this.innerHTML)">3</span>
             <span onclick="escribeOperador(this.innerHTML)">-</span>
             <span class="botonCero" onclick="escribeNumero(this.innerHTML)">0</span >
-            <span onclick="escribeNumero(this.innerHTML)">.</span>
+            <span onclick="escribePunto(this.innerHTML)">.</span>
             <span onclick="escribeOperador(this.innerHTML)">+</span>
         </div>
         <div class="ultimaFila">
          <span class="botonInutil">
                 M-
             </span>
-          <span class="botonEspecial">
+          <span class="botonEspecial" onclick="raiz();">
                 &#8730;
             </span>
-        <span>
+        <span onclick="porcentaje();">
                 %
             </span>
-         <span>
+         <span onclick="fraccion();">
                 1/x
             </span>
           <span class="botonIgual" onclick="evaluar()">
