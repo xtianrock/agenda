@@ -279,7 +279,7 @@ function editarContacto()
     if (editar)
     {
         accionGuardar="editar";
-        activarBotones(false,["nuevo"]);
+        activarBotones(false,["nuevo","buscar-contacto"]);
         activarBotones(true,["guardar"]);
         cambiarAccionBorrar("cancelar");
         cuadrosTexto(true);
