@@ -5,7 +5,7 @@ function abrirAgenda() {
     if (window.ventana) {
         ventana.close();
     }
-    ventana = window.open('agenda.html', 'Agenda', "width=auto, height=auto, left = 650 ,top=150");
+    ventana = window.open('agenda.html', 'Agenda', "width=auto, height=auto, left = 650px ,top=150px");
 }
 
 function abrirCalculadora() {

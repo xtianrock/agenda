@@ -145,13 +145,13 @@ function cambiarAccionBorrar(accion)
 {
     if(accion=="borrar")
     {
-        element("borrar-img").src = "img/borrar.png";
+        element("borrar-img").src = "../img/borrar.png";
         element("borrar").title = "Eliminar contato";
         accionBorrar = "borrar";
     }
     else
     {
-        element("borrar-img").src = "img/cancelar.png";
+        element("borrar-img").src = "../img/cancelar.png";
         element("borrar").title = "Cancelar";
         accionBorrar = "cancelar";
     }
