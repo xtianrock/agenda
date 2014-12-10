@@ -5,13 +5,13 @@ function abrirAgenda() {
     if (window.ventana) {
         ventana.close();
     }
-    ventana = window.open('agenda.html', 'Agenda', "width=auto, height=auto, left = 650px ,top=150px");
+    ventana = window.open('agenda.html', 'Agenda', "width=700px, height=800px, left = 300px ,top=100px");
 }
 
 function abrirCalculadora() {
     if (window.ventana) {
         ventana.close();
     }
-    ventana = window.open('calculadora.html', 'Calculadora', "width=auto, height=auto, left = 800,top= 200");
+    ventana = window.open('calculadora.html', 'Calculadora', "width=500px, height=600px, left = 300px ,top=100px");
 }
 
